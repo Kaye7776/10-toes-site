@@ -258,7 +258,6 @@ function renderState() {
   $("#dName").textContent = CASE.artist;
   $("#dCity").textContent = CASE.city;
   $("#dDate").textContent = CASE.date;
-  $$("[data-testid='case-id']").forEach(() => {});
 
   const isFound = CASE.status.toUpperCase() === "FOUND";
   const statusText = isFound ? "FOUND" : "MISSING";
@@ -382,6 +381,11 @@ addEventListener("keydown", (e) => {
   }
 });
 if (location.hash.includes("state=FOUND")) CASE.status = "FOUND";
+// Re-render when hash changes programmatically (robustness)
+addEventListener("hashchange", () => {
+  CASE.status = location.hash.includes("state=FOUND") ? "FOUND" : "MISSING";
+  location.reload();
+});
 
 /* -------------------- BOOTSTRAP -------------------- */
 renderState();

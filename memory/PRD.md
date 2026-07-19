@@ -1,0 +1,45 @@
+# PRD — CASE TT-24-07-26 (KAYE / TEN TOES cinematic PWA)
+
+## Original problem statement
+Build a premium, cinematic, installable PWA that impersonates a confidential police/government
+investigation database. Marketing campaign for artist KAYE; QR codes on "Wanted" posters lead here.
+Users initially believe it's a real investigation archive; on release the case flips to FOUND and reveals
+the song TEN TOES with streaming links. Constraint: PURE HTML/CSS/vanilla JS, NO frameworks. Deliver
+index.html, style.css, script.js, manifest.json, service-worker.js, README.md.
+
+## Architecture / decisions
+- Static site lives in `/app/frontend/public/` (served at site root by CRA dev server). React renders
+  nothing into a hidden `#root` so it never interferes. All routes are non-/api → served by frontend.
+- No backend/database used. No auth.
+- Single source of truth: `CASE` config object at top of `script.js` (status, artist, song, whatsapp, links).
+- Assets: `/assets/photo.jpg` (AI-generated evidence photo, optimized ~126KB), `/assets/icon.png` (512px, ~225KB).
+
+## User personas
+- Curious passer-by who scans the poster QR (mobile-first, first-time visitor).
+- Fan revisiting after release to get streaming links.
+
+## Core requirements (static)
+- Cinematic boot/loading sequence → glitch → ACCESS GRANTED → archive.
+- Confidential top bar, kinetic CASE FILE hero, rotating status stamp, evidence frame, dossier, timeline, CTA, footer.
+- WhatsApp "JOIN THE INVESTIGATION" CTA with pre-filled message.
+- MISSING (red) vs FOUND (green → CASE CLOSED + TEN TOES + stream buttons) driven by one config flag.
+- PWA: installable, manifest, offline service worker, muted-by-default synthesized audio.
+
+## Implemented (2026-06)
+- [x] Boot loader: typed terminal lines, animated bar + %, hex, blinking cursor (reaches 100% ~12s).
+- [x] Glitch transition + ACCESS GRANTED screen.
+- [x] Ambient bg: moving gradient, breathing glow, canvas particle field, grain, scanlines, vignette, mouse spotlight.
+- [x] Hero masked line-by-line reveal + scroll parallax + rotating stamp.
+- [x] Evidence frame (scan sweep, corners, redaction, CCTV timestamp), dossier grid, scroll-animated timeline.
+- [x] WhatsApp CTA (placeholder number 351900000000) + ripple; sound toggle (WebAudio, muted default).
+- [x] MISSING/FOUND state engine + streaming links builder; dev `F` key + `#state=FOUND` + `?nointro=1` helpers.
+- [x] manifest.json, offline-first service-worker.js (same-origin cache), README.md.
+- [x] Optimized images. Tested by testing agent: 100% frontend pass, no bugs, no console errors, responsive.
+
+## Backlog
+- P1: Replace placeholder WhatsApp number + real streaming URLs (user to provide).
+- P2: Swap generated photo for the official KAYE photo once uploaded.
+- P2: Optional maskable 192px icon variant for stricter Lighthouse PWA score.
+
+## Next tasks
+- Await user's real WhatsApp number, streaming links, and KAYE photo, then flip `CASE.status` to FOUND at release.

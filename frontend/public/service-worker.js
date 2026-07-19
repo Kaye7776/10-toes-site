@@ -2,7 +2,7 @@
    CASE TT-24-07-26 — SERVICE WORKER
    Offline-first caching for the confidential archive PWA.
    ============================================================ */
-const CACHE = "case-tt-24-07-26-v1";
+const CACHE = "case-tt-24-07-26-v2";
 const ASSETS = [
   "/",
   "/index.html",
@@ -35,6 +35,8 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
+  // Only handle same-origin requests (skip Google Fonts / cross-origin CDNs)
+  if (new URL(req.url).origin !== self.location.origin) return;
 
   if (req.mode === "navigate") {
     event.respondWith(
