@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       CASE TT-24-07-26 — CONFIDENTIAL INVESTIGATION ARCHIVE
+       A cinematic PWA. Pure HTML / CSS / vanilla JS. No frameworks.
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+  <meta name="theme-color" content="#050608" />
+  <meta name="description" content="Confidential investigation archive. Authorized access only. Case TT-24-07-26." />
+
+  <!-- PWA + iOS standalone -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CASE TT-24" />
+  <link rel="apple-touch-icon" href="/assets/icon.png" />
+  <link rel="icon" href="/assets/icon.png" />
+
+  <title>CLASSIFIED // CASE TT-24-07-26</title>
+
+  <!-- Fonts: condensed heavy display + typewriter monospace -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <!-- React mounts here and renders nothing. Do not remove. -->
+  <div id="root" hidden aria-hidden="true"></div>
+
+  <!-- ========================= AMBIENT BACKGROUND ========================= -->
+  <!-- Moving gradient + breathing glow + particle canvas + noise + scanlines -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__gradient"></div>
+    <div class="bg__glow"></div>
+    <canvas class="bg__particles" id="particles"></canvas>
+    <div class="bg__noise"></div>
+    <div class="bg__scanlines"></div>
+    <div class="bg__vignette"></div>
+  </div>
+
+  <!-- Cursor spotlight (desktop pointer only) -->
+  <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+
+  <!-- ========================= BOOT / LOADING SCREEN ========================= -->
+  <section class="boot" id="boot" role="status" aria-label="System boot sequence">
+    <div class="boot__inner">
+      <div class="boot__brand">
+        <span class="boot__seal">◎</span>
+        <span class="boot__org">CENTRAL INVESTIGATION DATABASE</span>
+      </div>
+
+      <pre class="boot__log" id="bootLog" aria-live="polite"></pre>
+
+      <div class="boot__cursorline">
+        <span id="bootLine" class="boot__typed"></span><span class="boot__cursor">▋</span>
+      </div>
+
+      <div class="boot__bar" aria-hidden="true">
+        <div class="boot__bar-fill" id="bootFill"></div>
+      </div>
+
+      <div class="boot__meta">
+        <span id="bootPercent">0%</span>
+        <span class="boot__hex" id="bootHex">0x0000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ACCESS GRANTED SCREEN ========================= -->
+  <section class="granted" id="granted" aria-hidden="true">
+    <div class="granted__inner">
+      <div class="granted__tag">SECURE CHANNEL ESTABLISHED</div>
+      <h1 class="granted__title" data-glitch="ACCESS GRANTED">ACCESS GRANTED</h1>
+      <div class="granted__case">CASE <span>TT-24-07-26</span></div>
+      <div class="granted__hint">OPENING ARCHIVE…</div>
+    </div>
+  </section>
+
+  <!-- ========================= TOP BAR ========================= -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__left">
+      <span class="badge badge--classified" data-testid="classified-badge">CONFIDENTIAL</span>
+      <span class="topbar__level">CLEARANCE&nbsp;<b>L4</b></span>
+    </div>
+    <div class="topbar__right">
+      <span class="topbar__dot" title="uplink"></span>
+      <span class="topbar__dot topbar__dot--amber" title="tracing"></span>
+      <span class="topbar__sys" id="ipStamp">NODE 000.000</span>
+      <time class="topbar__clock" id="clock" data-testid="system-clock">--:--:--</time>
+      <button class="sound-toggle" id="soundToggle" data-testid="sound-toggle" aria-pressed="false" aria-label="Toggle audio">
+        <span class="sound-toggle__bars"><i></i><i></i><i></i></span>
+        <span class="sound-toggle__label">MUTED</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================= MAIN ARCHIVE ========================= -->
+  <main class="archive" id="archive">
+
+    <!-- HERO / CASE HEADER -->
+    <section class="hero reveal" data-parallax-scope>
+      <div class="hero__eyebrow reveal-child">CASE FILE — RESTRICTED DISTRIBUTION</div>
+      <h1 class="hero__title" data-parallax="0.12" aria-label="Case File TT-24-07-26">
+        <span class="hero__line"><span>CASE</span></span>
+        <span class="hero__line"><span>FILE</span></span>
+      </h1>
+      <div class="hero__id reveal-child" data-testid="case-id">TT-<span class="accent">24</span>-07-26</div>
+
+      <div class="hero__status reveal-child">
+        <span class="status-pill" id="statusPill" data-testid="status-pill">
+          <span class="status-pill__blip"></span>
+          <span id="statusText">MISSING</span>
+        </span>
+        <span class="hero__updated">ARCHIVE SYNCED&nbsp;·&nbsp;<span id="syncTime">LIVE</span></span>
+      </div>
+
+      <!-- Rotating stamp overlay -->
+      <div class="stamp" id="stamp" data-testid="case-stamp" aria-hidden="true">
+        <span class="stamp__ring"></span>
+        <span class="stamp__text" id="stampText">MISSING</span>
+      </div>
+    </section>
+
+    <!-- PHOTO / EVIDENCE -->
+    <section class="evidence reveal">
+      <figure class="frame" data-testid="evidence-frame">
+        <div class="frame__scan"></div>
+        <div class="frame__corner frame__corner--tl"></div>
+        <div class="frame__corner frame__corner--tr"></div>
+        <div class="frame__corner frame__corner--bl"></div>
+        <div class="frame__corner frame__corner--br"></div>
+        <img src="/assets/photo.jpg" alt="Confidential subject reference photograph" class="frame__img" loading="lazy" />
+        <div class="frame__redact"></div>
+        <figcaption class="frame__cap">
+          <span>EXHIBIT&nbsp;A</span>
+          <span>SRC: CCTV-07</span>
+          <span class="frame__cap-flash">● REC</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- CASE INFORMATION -->
+    <section class="info reveal" aria-labelledby="infoHeading">
+      <h2 class="section-title reveal-child" id="infoHeading">SUBJECT DOSSIER</h2>
+      <div class="info__grid">
+        <div class="datum reveal-child">
+          <span class="datum__k">NAME</span>
+          <span class="datum__v datum__v--name" id="dName" data-testid="datum-name">KAYE</span>
+        </div>
+        <div class="datum reveal-child">
+          <span class="datum__k">LAST SEEN</span>
+          <span class="datum__v" id="dCity">Rio Tinto, Porto</span>
+        </div>
+        <div class="datum reveal-child">
+          <span class="datum__k">DATE</span>
+          <span class="datum__v" id="dDate">24 July 2026</span>
+        </div>
+        <div class="datum reveal-child">
+          <span class="datum__k">CASE STATUS</span>
+          <span class="datum__v" id="dStatus">ACTIVE — OPEN</span>
+        </div>
+      </div>
+      <div class="info__desc reveal-child">
+        <span class="datum__k">DESCRIPTION</span>
+        <p id="dDesc">This individual remains missing. If you possess any relevant information, join the investigation.</p>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline reveal" aria-labelledby="tlHeading">
+      <h2 class="section-title reveal-child" id="tlHeading">CASE TIMELINE</h2>
+      <ol class="tl" id="timelineList">
+        <li class="tl__item">
+          <span class="tl__dot"></span>
+          <span class="tl__date">15 JUL</span>
+          <span class="tl__head">First Report</span>
+          <span class="tl__body">Subject flagged as unreachable. File opened.</span>
+        </li>
+        <li class="tl__item">
+          <span class="tl__dot"></span>
+          <span class="tl__date">20 JUL</span>
+          <span class="tl__head">Witness Statement</span>
+          <span class="tl__body">Third party places subject near the river district after dark.</span>
+        </li>
+        <li class="tl__item">
+          <span class="tl__dot"></span>
+          <span class="tl__date">24 JUL</span>
+          <span class="tl__head">Last Confirmed Location</span>
+          <span class="tl__body">Final trace logged. Signal lost. Investigation ongoing.</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta reveal" id="ctaSection">
+      <!-- MISSING state -->
+      <div class="cta__missing" id="ctaMissing">
+        <p class="cta__lead reveal-child">Have you seen this person? The archive is accepting new testimony.</p>
+        <a class="btn-major" id="joinBtn" href="#" target="_blank" rel="noopener" data-testid="join-investigation-btn">
+          <span class="btn-major__ripple"></span>
+          <span class="btn-major__label">JOIN THE INVESTIGATION</span>
+          <span class="btn-major__arrow">→</span>
+        </a>
+        <span class="cta__note">Encrypted channel · Your report is confidential</span>
+      </div>
+
+      <!-- FOUND / RELEASE state (revealed automatically when CASE.status = FOUND) -->
+      <div class="release" id="release" hidden aria-hidden="true">
+        <div class="release__closed">CASE CLOSED</div>
+        <h2 class="release__song" data-testid="release-song">TEN TOES</h2>
+        <p class="release__by">KAYE — OUT NOW</p>
+        <div class="release__links" id="streamLinks" data-testid="stream-links"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="foot reveal">
+      <div class="foot__row">
+        <span>CASE NUMBER</span>
+        <b data-testid="foot-case">TT-24-07-26</b>
+      </div>
+      <div class="foot__row foot__row--muted">
+        <span>Archive updated in real time</span>
+        <span class="foot__live"><i></i> LIVE</span>
+      </div>
+      <div class="foot__fine">
+        UNAUTHORIZED ACCESS IS PROHIBITED · ALL ACTIVITY IS LOGGED · PROPERTY OF CID
+      </div>
+    </footer>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
