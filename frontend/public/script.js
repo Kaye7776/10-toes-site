@@ -41,7 +41,7 @@ document.body.classList.add("locked");
 /* -------------------- 2. AUTENTICAÇÃO (SÓBRIA) -------------------- */
 const AUTH_STEPS = [
   "A estabelecer ligação...",
-  "A autenticar acesso...",
+  "A autenticar utilizador...",
   "A carregar processo...",
   "A abrir arquivo..."
 ];
@@ -71,9 +71,8 @@ function openArchive() {
   if (openArchive.done) return;
   openArchive.done = true;
   const auth = $("#auth");
-  auth.classList.add("auth--glitch");                 // transição subtil (glitch)
-  setTimeout(() => auth.classList.add("is-hidden"), 150);
-  setTimeout(() => { auth.style.display = "none"; }, 680);
+  auth.classList.add("is-hidden");                    // fade subtil (sem glitch)
+  setTimeout(() => { auth.style.display = "none"; }, 600);
   document.body.classList.remove("locked");
   $("#archive").classList.add("is-live");
   requestAnimationFrame(() => $$(".reveal").forEach((el, i) => {
@@ -132,11 +131,11 @@ function wireCTA() {
 
 /* Estado de consulta subtil: "Hoje às HH:MM" */
 function setLastUpdate() {
-  const el = $("#lastUpdate");
-  if (!el) return;
   const d = new Date();
   const p = (n) => String(n).padStart(2, "0");
-  el.textContent = `Hoje às ${p(d.getHours())}:${p(d.getMinutes())}`;
+  const t = `Hoje às ${p(d.getHours())}:${p(d.getMinutes())}`;
+  const a = $("#lastUpdate"); if (a) a.textContent = t;
+  const m = $("#metaSync"); if (m) m.textContent = t;
 }
 
 /* Atividade do sistema: "há N minutos" (arquivo já sincronizado) */
@@ -171,7 +170,7 @@ function renderState() {
 
   $("#dDesc").textContent = found
     ? `Processo encerrado. Indivíduo localizado. Esta investigação integrou a campanha de lançamento de “${CASE.musica}”.`
-    : "Este indivíduo permanece desaparecido. Caso possua qualquer informação relevante, participe na investigação.";
+    : "O paradeiro do indivíduo permanece desconhecido. Caso disponha de informações relevantes para o processo, poderá colaborar através do canal seguro abaixo.";
 
   const missing = $("#ctaMissing");
   const release = $("#release");

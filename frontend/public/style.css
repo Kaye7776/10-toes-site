@@ -79,7 +79,7 @@ img{display:block;max-width:100%}
   100%{transform:translate(0)}
 }
 .auth__box{width:min(420px,100%);text-align:center;color:#e9edf4}
-.auth__emblem{width:96px;height:auto;margin:0 auto 20px;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4))}
+.auth__emblem{width:92px;height:92px;margin:0 auto 20px;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4))}
 .auth__org b{display:block;font-family:var(--font-head);font-weight:700;letter-spacing:.2em;font-size:18px;color:#fff}
 .auth__org span{display:block;font-size:12px;color:#a9b6cc;margin-top:4px}
 .auth__sys{margin:22px 0 26px;font-family:var(--font-head);font-size:11px;letter-spacing:.18em;color:var(--gold-soft)}
@@ -122,14 +122,21 @@ img{display:block;max-width:100%}
   width:min(820px,100%);margin:0 auto;
   background:var(--paper);
   background-image:
+    radial-gradient(120% 90% at 100% 0%, rgba(184,150,63,.05), transparent 55%),
+    radial-gradient(100% 80% at 0% 100%, rgba(60,50,30,.045), transparent 55%),
     linear-gradient(var(--paper),var(--paper)),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
   color:var(--ink);
   padding:34px clamp(20px,5vw,52px) 40px;
   border-top:6px solid var(--navy);
-  box-shadow:0 24px 60px -30px rgba(0,0,0,.8);
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.5), inset 0 -34px 60px -42px rgba(80,66,40,.18);
   position:relative;
 }
+/* Selo institucional inline — adapta a cor ao contexto */
+.seal{display:block;color:var(--navy)}
+.auth__emblem{color:var(--gold-soft)}
+.topbar__emblem{color:var(--gold-soft)}
+.doc-head__emblem{color:var(--navy)}
 .sheet::after{ /* marca de água subtil */
   content:"CONFIDENCIAL";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-family:var(--font-head);font-weight:700;font-size:clamp(3rem,11vw,7rem);
@@ -244,6 +251,17 @@ img{display:block;max-width:100%}
 .foot__row b{color:var(--navy);letter-spacing:.1em}
 .foot__row--muted{color:var(--ink-faint);font-size:11px}
 .foot__fine{margin-top:14px;font-size:9px;letter-spacing:.14em;color:var(--ink-faint);text-align:center}
+.foot__scan{margin-top:12px;text-align:center;font-family:var(--font-head);font-size:8.5px;letter-spacing:.24em;color:var(--ink-faint);opacity:.6;line-height:1.9;text-transform:uppercase}
+
+/* Classificação do processo — metadados discretos */
+.meta{margin-top:24px}
+.meta__title{font-family:var(--font-head);font-size:11px;letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:8px}
+.meta__grid{display:grid;grid-template-columns:1fr;gap:0}
+.meta__grid>div{display:flex;justify-content:space-between;gap:16px;padding:6px 0;border-bottom:1px dotted var(--line)}
+.meta__grid>div:last-child{border-bottom:0}
+.meta__grid dt{font-family:var(--font-head);font-size:10.5px;letter-spacing:.08em;color:var(--ink-faint);text-transform:uppercase}
+.meta__grid dd{font-family:var(--font-type);font-size:12px;color:var(--ink-2);text-align:right}
+@media (min-width:600px){.meta__grid{grid-template-columns:1fr 1fr;column-gap:36px}.meta__grid>div:nth-last-child(2){border-bottom:0}}
 
 /* Atividade do sistema — discreta, sóbria */
 .sysact{

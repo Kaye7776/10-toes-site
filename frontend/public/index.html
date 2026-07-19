@@ -34,10 +34,23 @@
   <!-- O React monta aqui e não renderiza nada. Não remover. -->
   <div id="root" hidden aria-hidden="true"></div>
 
+  <!-- Selo institucional (SVG inline, adapta a cor ao contexto via currentColor) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="seal" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.8"/>
+      <line x1="15" y1="38" x2="85" y2="38" stroke="currentColor" stroke-width="0.8"/>
+      <line x1="15" y1="62" x2="85" y2="62" stroke="currentColor" stroke-width="0.8"/>
+      <text x="50" y="31.5" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="8" letter-spacing="1.4" fill="currentColor">ARQUIVO CENTRAL</text>
+      <text x="50" y="56" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="18" letter-spacing="2" fill="currentColor">ACI</text>
+      <text x="50" y="74.5" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="7.5" letter-spacing="1.1" fill="currentColor">DE INVESTIGAÇÃO</text>
+    </symbol>
+  </svg>
+
   <!-- ========================= ECRÃ DE AUTENTICAÇÃO (sóbrio) ========================= -->
   <section class="auth" id="auth" role="status" aria-label="Validação de acesso">
     <div class="auth__box">
-      <img src="/assets/emblem.png" alt="Selo do Arquivo de Investigação" class="auth__emblem" />
+      <svg class="seal auth__emblem" role="img" aria-label="Selo do Arquivo Central de Investigação"><use href="#seal"/></svg>
       <div class="auth__org">
         <b>ARQUIVO DE INVESTIGAÇÃO</b>
         <span>Arquivo Central Confidencial · Unidade de Processos</span>
@@ -56,7 +69,7 @@
   <!-- ========================= BARRA SUPERIOR ========================= -->
   <header class="topbar" id="topbar">
     <div class="topbar__left">
-      <img src="/assets/emblem.png" alt="" class="topbar__emblem" aria-hidden="true" />
+      <svg class="seal topbar__emblem" aria-hidden="true"><use href="#seal"/></svg>
       <span class="topbar__org">ARQUIVO DE INVESTIGAÇÃO</span>
     </div>
     <div class="topbar__right">
@@ -81,7 +94,7 @@
 
       <!-- Cabeçalho oficial do documento -->
       <header class="doc-head reveal">
-        <img src="/assets/emblem.png" alt="Selo do Arquivo de Investigação" class="doc-head__emblem" />
+        <svg class="seal doc-head__emblem" role="img" aria-label="Selo do Arquivo Central de Investigação"><use href="#seal"/></svg>
         <div class="doc-head__titles">
           <span class="doc-head__rep">ARQUIVO CENTRAL CONFIDENCIAL</span>
           <span class="doc-head__pj">ARQUIVO DE INVESTIGAÇÃO</span>
@@ -107,6 +120,19 @@
         </div>
       </section>
 
+      <!-- Classificação do processo (metadados administrativos, discreto) -->
+      <section class="meta reveal" data-testid="case-classification">
+        <h2 class="meta__title">CLASSIFICAÇÃO DO PROCESSO</h2>
+        <dl class="meta__grid">
+          <div><dt>Nível de Acesso</dt><dd>RESTRITO</dd></div>
+          <div><dt>Estado</dt><dd>ATIVO</dd></div>
+          <div><dt>Última sincronização</dt><dd id="metaSync">Hoje às 00:41</dd></div>
+          <div><dt>Responsável pelo Processo</dt><dd>Unidade de Processos Especiais</dd></div>
+          <div><dt>Prioridade</dt><dd>ALTA</dd></div>
+          <div><dt>Última Revisão</dt><dd>19-07-2026</dd></div>
+        </dl>
+      </section>
+
       <!-- Fotografia / prova -->
       <section class="evidence reveal">
         <h2 class="sec-title">FOTOGRAFIA DE REFERÊNCIA</h2>
@@ -114,8 +140,8 @@
           <img src="/assets/photo.jpg" alt="Fotografia de referência do indivíduo" class="frame__img" loading="lazy" />
           <figcaption class="frame__cap">
             <span>PROVA A</span>
-            <span>FONTE: CCTV-07</span>
-            <span>REG. 24-07-2026</span>
+            <span>Fonte: Registo Fotográfico</span>
+            <span>24-07-2026</span>
           </figcaption>
         </figure>
       </section>
@@ -131,7 +157,7 @@
         </dl>
         <div class="desc">
           <span class="lbl">DESCRIÇÃO</span>
-          <p id="dDesc">Este indivíduo permanece desaparecido. Caso possua qualquer informação relevante, participe na investigação.</p>
+          <p id="dDesc">O paradeiro do indivíduo permanece desconhecido. Caso disponha de informações relevantes para o processo, poderá colaborar através do canal seguro abaixo.</p>
         </div>
       </section>
 
@@ -141,18 +167,15 @@
         <ol class="tl" id="timelineList">
           <li class="tl__item">
             <span class="tl__date">15 JUL 2026</span>
-            <span class="tl__head">Primeira Denúncia</span>
-            <span class="tl__body">Participação inicial de desaparecimento. Abertura do processo.</span>
+            <span class="tl__body">Participação registada.<br>Processo aberto.</span>
           </li>
           <li class="tl__item">
             <span class="tl__date">20 JUL 2026</span>
-            <span class="tl__head">Declaração de Testemunha</span>
-            <span class="tl__body">Terceiro coloca o indivíduo junto à zona ribeirinha após o anoitecer.</span>
+            <span class="tl__body">Recebido relato de possível avistamento.<br>Local: Zona Ribeirinha, Rio Tinto.<br>A aguardar validação.</span>
           </li>
           <li class="tl__item">
             <span class="tl__date">24 JUL 2026</span>
-            <span class="tl__head">Última Localização Confirmada</span>
-            <span class="tl__body">Último registo. Rasto perdido. Investigação em curso.</span>
+            <span class="tl__body">Último registo validado.<br>Sem novos desenvolvimentos.<br>Processo permanece ativo.</span>
           </li>
         </ol>
       </section>
@@ -200,6 +223,7 @@
         </div>
 
         <p class="foot__fine">O ACESSO NÃO AUTORIZADO É PROIBIDO · TODA A ATIVIDADE É REGISTADA · ARQUIVO DE INVESTIGAÇÃO</p>
+        <div class="foot__scan">PROCESSO DIGITALIZADO<br>ARQUIVO CENTRAL DE INVESTIGAÇÃO</div>
       </footer>
 
     </article>
