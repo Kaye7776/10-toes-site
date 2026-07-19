@@ -3,7 +3,7 @@
 <head>
   <!-- ============================================================
        PROCESSO TT-24-07-26 — ARQUIVO DE INVESTIGAÇÃO
-       Polícia Judiciária · República Portuguesa · 2026
+       Arquivo Central Confidencial · Unidade de Processos · 2026 (identidade fictícia)
        HTML / CSS / JavaScript puro. Sem frameworks.
        ============================================================ -->
   <meta charset="UTF-8" />
@@ -37,13 +37,13 @@
   <!-- ========================= ECRÃ DE AUTENTICAÇÃO (sóbrio) ========================= -->
   <section class="auth" id="auth" role="status" aria-label="Validação de acesso">
     <div class="auth__box">
-      <img src="/assets/emblem.png" alt="Emblema da Polícia Judiciária" class="auth__emblem" />
+      <img src="/assets/emblem.png" alt="Selo do Arquivo de Investigação" class="auth__emblem" />
       <div class="auth__org">
-        <b>POLÍCIA JUDICIÁRIA</b>
-        <span>República Portuguesa · Ministério da Justiça</span>
+        <b>ARQUIVO DE INVESTIGAÇÃO</b>
+        <span>Arquivo Central Confidencial · Unidade de Processos</span>
       </div>
-      <div class="auth__sys">SISTEMA INTEGRADO DE INFORMAÇÃO CRIMINAL</div>
-      <div class="auth__status" id="authStatus">A validar credenciais de acesso…</div>
+      <div class="auth__sys">SISTEMA DE ARQUIVO DE PROCESSOS</div>
+      <div class="auth__status" id="authStatus">A estabelecer ligação...</div>
       <div class="auth__bar"><div class="auth__bar-fill" id="authFill"></div></div>
       <div class="auth__meta">
         <span id="authPct">0%</span>
@@ -57,7 +57,7 @@
   <header class="topbar" id="topbar">
     <div class="topbar__left">
       <img src="/assets/emblem.png" alt="" class="topbar__emblem" aria-hidden="true" />
-      <span class="topbar__org">POLÍCIA JUDICIÁRIA</span>
+      <span class="topbar__org">ARQUIVO DE INVESTIGAÇÃO</span>
     </div>
     <div class="topbar__right">
       <span class="topbar__level">CREDENCIAL <b>N4</b></span>
@@ -81,11 +81,11 @@
 
       <!-- Cabeçalho oficial do documento -->
       <header class="doc-head reveal">
-        <img src="/assets/emblem.png" alt="Emblema da Polícia Judiciária" class="doc-head__emblem" />
+        <img src="/assets/emblem.png" alt="Selo do Arquivo de Investigação" class="doc-head__emblem" />
         <div class="doc-head__titles">
-          <span class="doc-head__rep">REPÚBLICA PORTUGUESA</span>
-          <span class="doc-head__pj">POLÍCIA JUDICIÁRIA</span>
-          <span class="doc-head__unit">Diretoria do Norte · Unidade de Pessoas Desaparecidas</span>
+          <span class="doc-head__rep">ARQUIVO CENTRAL CONFIDENCIAL</span>
+          <span class="doc-head__pj">ARQUIVO DE INVESTIGAÇÃO</span>
+          <span class="doc-head__unit">Unidade de Processos · Pessoas Desaparecidas</span>
         </div>
       </header>
 
@@ -162,7 +162,7 @@
         <div id="ctaMissing">
           <div class="notice">
             <span class="lbl">COLABORAÇÃO PÚBLICA</span>
-            <p>A Polícia Judiciária solicita a colaboração de quem possua informações sobre o paradeiro do indivíduo.</p>
+            <p>O Arquivo de Investigação solicita a colaboração de quem possua informações sobre o paradeiro do indivíduo.</p>
           </div>
           <a class="btn" id="joinBtn" href="#" target="_blank" rel="noopener" data-testid="join-investigation-btn">
             PARTICIPAR NA INVESTIGAÇÃO
@@ -179,16 +179,30 @@
         </div>
       </section>
 
+      <!-- Estado de consulta (subtil, reforça arquivo ativo) -->
+      <section class="livestatus reveal" data-testid="live-status">
+        <span class="livestatus__label"><i class="livestatus__dot"></i>PROCESSO CONSULTADO RECENTEMENTE</span>
+        <span class="livestatus__meta">Última atualização: <b id="lastUpdate">—</b></span>
+      </section>
+
       <!-- Rodapé do documento -->
       <footer class="foot reveal">
         <div class="rule"></div>
         <div class="foot__row"><span>PROCESSO N.º</span><b data-testid="foot-case">TT-24-07-26</b></div>
         <div class="foot__row foot__row--muted"><span>Arquivo atualizado em tempo real</span><span id="footSync">—</span></div>
-        <p class="foot__fine">O ACESSO NÃO AUTORIZADO É PROIBIDO · TODA A ATIVIDADE É REGISTADA · POLÍCIA JUDICIÁRIA</p>
+        <p class="foot__fine">O ACESSO NÃO AUTORIZADO É PROIBIDO · TODA A ATIVIDADE É REGISTADA · ARQUIVO DE INVESTIGAÇÃO</p>
       </footer>
 
     </article>
   </main>
+
+  <!-- ========================= OVERLAY DE CANAL SEGURO ========================= -->
+  <!-- Mostrado ~1s ao clicar em PARTICIPAR antes de abrir o WhatsApp -->
+  <div class="secure" id="secure" role="alert" aria-hidden="true" data-testid="secure-overlay">
+    <div class="secure__lock" aria-hidden="true"></div>
+    <div class="secure__t1">CANAL SEGURO ENCRIPTADO</div>
+    <div class="secure__t2">A REDIRECIONAR...</div>
+  </div>
 
   <script src="/script.js"></script>
 </body>

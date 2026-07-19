@@ -1,7 +1,7 @@
-# PROCESSO TT-24-07-26 — Arquivo de Investigação (Polícia Judiciária)
+# PROCESSO TT-24-07-26 — Arquivo de Investigação (identidade fictícia)
 
 Aplicação web progressiva (**PWA**) que reproduz, de forma autêntica, um **dossiê
-digital oficial da Polícia Judiciária** (República Portuguesa). Faz parte da campanha
+digital oficial de um **Arquivo de Investigação fictício**. Faz parte da campanha
 de lançamento do artista **KAYE** e da música **TEN TOES**.
 
 As pessoas chegam ao site ao ler um QR Code num cartaz de "Pessoa Desaparecida" e
@@ -64,7 +64,7 @@ const CASE = {
 
 ## Experiência
 1. **Autenticação** sóbria (emblema PJ, validação de credenciais, barra de progresso) → fade.
-2. **Dossiê** em folha de papel: cabeçalho oficial (República Portuguesa · Polícia Judiciária),
+2. **Dossiê** em folha de papel: cabeçalho oficial (Arquivo Central Confidencial · Arquivo de Investigação),
    faixa **CONFIDENCIAL · USO OFICIAL · DIFUSÃO RESTRITA**, referência do processo, carimbo,
    fotografia de referência, identificação do indivíduo, cronologia (animada ao scroll),
    pedido de colaboração pública, rodapé com atualização em tempo real.

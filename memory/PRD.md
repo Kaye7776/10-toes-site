@@ -50,3 +50,11 @@ index.html, style.css, script.js, manifest.json, service-worker.js, README.md.
 - [x] Cinematics reduced ~70%: removed particle canvas, scanlines, breathing glow, mouse glow, glitch transitions and audio; kept a sober auth screen + subtle scroll reveals + stamp press-in. Added "Saltar" skip link.
 - [x] New AI-generated PJ-style emblem + app icon; config keys localized (`estado`, `artista`, `musica`...); DESAPARECIDO↔LOCALIZADO engine in Portuguese.
 - [x] manifest (pt-PT, navy), service-worker v3. Tested by testing agent: 100% frontend pass (11/11), zero JS errors, responsive.
+
+## Refinement — fictional identity + realism pass (2026-06)
+- [x] Replaced real "Polícia Judiciária" identity/emblem with a fictional **ARQUIVO DE INVESTIGAÇÃO** (Arquivo Central Confidencial · Unidade de Processos) + new generic navy/gold seal & app icon. Removed all real-institution references (site + README + manifest).
+- [x] New natural, non-cropped photo placeholder (neutral anonymous silhouette; frame now object-fit:contain).
+- [x] Loading screen: black background, messages "A estabelecer ligação…/A autenticar acesso…/A carregar processo…/A abrir arquivo…", bar + %, subtle glitch on transition (~3s).
+- [x] Secure-channel overlay ("CANAL SEGURO ENCRIPTADO / A REDIRECIONAR…") for ~1.1s before opening WhatsApp.
+- [x] Realistic ink carimbo (SVG-noise mask = uneven/faded ink, multiply blend with paper, slight rotation).
+- [x] Slimmer red CONFIDENCIAL bar; added subtle live "PROCESSO CONSULTADO RECENTEMENTE · Última atualização: Hoje às HH:MM" near footer. service-worker → v4.

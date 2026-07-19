@@ -40,10 +40,10 @@ document.body.classList.add("locked");
 
 /* -------------------- 2. AUTENTICAÇÃO (SÓBRIA) -------------------- */
 const AUTH_STEPS = [
-  "A validar credenciais de acesso…",
-  "A estabelecer canal seguro (TLS)…",
-  "A aceder ao arquivo de processos…",
-  "Acesso autorizado."
+  "A estabelecer ligação...",
+  "A autenticar acesso...",
+  "A carregar processo...",
+  "A abrir arquivo..."
 ];
 
 async function runAuth() {
@@ -71,8 +71,9 @@ function openArchive() {
   if (openArchive.done) return;
   openArchive.done = true;
   const auth = $("#auth");
-  auth.classList.add("is-hidden");
-  setTimeout(() => { auth.style.display = "none"; }, 500);
+  auth.classList.add("auth--glitch");                 // transição subtil (glitch)
+  setTimeout(() => auth.classList.add("is-hidden"), 150);
+  setTimeout(() => { auth.style.display = "none"; }, 680);
   document.body.classList.remove("locked");
   $("#archive").classList.add("is-live");
   requestAnimationFrame(() => $$(".reveal").forEach((el, i) => {
@@ -113,7 +114,29 @@ if ($("#timelineList")) tlIo.observe($("#timelineList"));
 function wireCTA() {
   const btn = $("#joinBtn");
   const msg = `Olá. Gostaria de participar na investigação ${CASE.processo}.`;
-  btn.href = `https://wa.me/${CASE.whatsapp}?text=${encodeURIComponent(msg)}`;
+  const url = `https://wa.me/${CASE.whatsapp}?text=${encodeURIComponent(msg)}`;
+  btn.href = url;
+  // Transição de "canal seguro" (~1s) antes de abrir o WhatsApp
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const ov = $("#secure");
+    ov.classList.add("is-active");
+    ov.setAttribute("aria-hidden", "false");
+    setTimeout(() => {
+      window.open(url, "_blank", "noopener");
+      ov.classList.remove("is-active");
+      ov.setAttribute("aria-hidden", "true");
+    }, 1100);
+  });
+}
+
+/* Estado de consulta subtil: "Hoje às HH:MM" */
+function setLastUpdate() {
+  const el = $("#lastUpdate");
+  if (!el) return;
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  el.textContent = `Hoje às ${p(d.getHours())}:${p(d.getMinutes())}`;
 }
 
 /* -------------------- 6. RENDERIZADOR DE ESTADO -------------------- */
@@ -206,6 +229,8 @@ addEventListener("hashchange", () => {
 /* -------------------- ARRANQUE -------------------- */
 renderState();
 wireCTA();
+setLastUpdate();
+setInterval(setLastUpdate, 30000);
 const skipIntro = prefersReduced || location.search.includes("nointro");
 if (skipIntro) {
   $("#auth").style.display = "none";
