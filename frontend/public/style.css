@@ -245,6 +245,17 @@ img{display:block;max-width:100%}
 .foot__row--muted{color:var(--ink-faint);font-size:11px}
 .foot__fine{margin-top:14px;font-size:9px;letter-spacing:.14em;color:var(--ink-faint);text-align:center}
 
+/* Atividade do sistema — discreta, sóbria */
+.sysact{
+  margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);
+  display:flex;flex-wrap:wrap;gap:7px 22px;
+  font-family:var(--font-type);font-size:11px;color:var(--ink-faint);letter-spacing:.02em;
+}
+.sysact__item{display:inline-flex;align-items:center;gap:7px}
+.sysact__item b{color:var(--ink-2);font-weight:400}
+.sysact__item--wide{font-style:italic;opacity:.85}
+.sysact__dot{width:7px;height:7px;border-radius:50%;background:#2e7d32;box-shadow:0 0 0 2px rgba(46,125,50,.15);animation:lsPulse 2.4s ease-in-out infinite}
+
 /* ---------------- 11b. ESTADO DE CONSULTA (subtil) ---------------- */
 .livestatus{
   margin-top:30px;padding:13px 16px;border:1px solid var(--line);background:var(--paper-2);

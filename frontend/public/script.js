@@ -139,6 +139,15 @@ function setLastUpdate() {
   el.textContent = `Hoje às ${p(d.getHours())}:${p(d.getMinutes())}`;
 }
 
+/* Atividade do sistema: "há N minutos" (arquivo já sincronizado) */
+const syncStart = Date.now() - 2 * 60000;
+function setSyncAgo() {
+  const el = $("#lastSync");
+  if (!el) return;
+  const mins = Math.floor((Date.now() - syncStart) / 60000);
+  el.textContent = mins <= 0 ? "agora mesmo" : `há ${mins} minuto${mins === 1 ? "" : "s"}`;
+}
+
 /* -------------------- 6. RENDERIZADOR DE ESTADO -------------------- */
 function renderState() {
   $("#dName").textContent = CASE.artista;
@@ -230,7 +239,8 @@ addEventListener("hashchange", () => {
 renderState();
 wireCTA();
 setLastUpdate();
-setInterval(setLastUpdate, 30000);
+setSyncAgo();
+setInterval(() => { setLastUpdate(); setSyncAgo(); }, 30000);
 const skipIntro = prefersReduced || location.search.includes("nointro");
 if (skipIntro) {
   $("#auth").style.display = "none";
