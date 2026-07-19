@@ -42,4 +42,11 @@ index.html, style.css, script.js, manifest.json, service-worker.js, README.md.
 - P2: Optional maskable 192px icon variant for stricter Lighthouse PWA score.
 
 ## Next tasks
-- Await user's real WhatsApp number, streaming links, and KAYE photo, then flip `CASE.status` to FOUND at release.
+- Await user's real WhatsApp number, streaming links, and KAYE photo, then flip `CASE.estado` to LOCALIZADO at release.
+
+## Redesign — Polícia Judiciária authentic dossier (2026-06)
+- [x] Rebuilt entire experience as an authentic Portuguese **Polícia Judiciária** digital case-file (paper dossier), replacing the futuristic FBI/terminal look.
+- [x] Portuguese (pt-PT) throughout; institutional navy + gold; official letterhead (REPÚBLICA PORTUGUESA / POLÍCIA JUDICIÁRIA), CONFIDENCIAL classification band, carimbo, dossier fields, cronologia.
+- [x] Cinematics reduced ~70%: removed particle canvas, scanlines, breathing glow, mouse glow, glitch transitions and audio; kept a sober auth screen + subtle scroll reveals + stamp press-in. Added "Saltar" skip link.
+- [x] New AI-generated PJ-style emblem + app icon; config keys localized (`estado`, `artista`, `musica`...); DESAPARECIDO↔LOCALIZADO engine in Portuguese.
+- [x] manifest (pt-PT, navy), service-worker v3. Tested by testing agent: 100% frontend pass (11/11), zero JS errors, responsive.

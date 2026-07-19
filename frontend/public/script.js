@@ -64,21 +64,22 @@ async function runAuth() {
     await sleep(360);
   }
   await sleep(400);
-
-  // Transição sóbria (fade)
-  $("#auth").classList.add("is-hidden");
-  await sleep(500);
-  $("#auth").style.display = "none";
   openArchive();
 }
 
 function openArchive() {
+  if (openArchive.done) return;
+  openArchive.done = true;
+  const auth = $("#auth");
+  auth.classList.add("is-hidden");
+  setTimeout(() => { auth.style.display = "none"; }, 500);
   document.body.classList.remove("locked");
   $("#archive").classList.add("is-live");
   requestAnimationFrame(() => $$(".reveal").forEach((el, i) => {
     if (i < 3) el.classList.add("is-in");
   }));
 }
+$("#authSkip").addEventListener("click", openArchive);
 
 /* -------------------- 3. RELÓGIO DO SISTEMA -------------------- */
 function tickClock() {
@@ -171,7 +172,11 @@ function buildStreamLinks() {
     a.rel = "noopener";
     a.setAttribute("data-testid", "stream-" + l.name.toLowerCase().replace(/\s/g, "-"));
     a.textContent = l.url ? l.name : l.name + " · BREVE";
-    if (!l.url) { a.setAttribute("aria-disabled", "true"); a.style.opacity = ".5"; }
+    if (!l.url) {
+      a.setAttribute("aria-disabled", "true");
+      a.style.opacity = ".5";
+      a.addEventListener("click", (e) => e.preventDefault());
+    }
     wrap.appendChild(a);
   });
 }

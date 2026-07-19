@@ -79,6 +79,12 @@ img{display:block;max-width:100%}
 .auth__bar{height:4px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden}
 .auth__bar-fill{height:100%;width:0;background:var(--gold);transition:width .2s linear}
 .auth__meta{display:flex;justify-content:space-between;margin-top:10px;font-family:var(--font-head);font-size:10px;letter-spacing:.16em;color:#8fa0bd}
+.auth__skip{
+  display:block;margin:22px auto 0;background:none;border:0;cursor:pointer;
+  font-family:var(--font-head);font-size:11px;letter-spacing:.16em;color:#8fa0bd;
+  padding:6px 10px;transition:color .25s;
+}
+.auth__skip:hover{color:var(--gold-soft)}
 
 /* ---------------- 3. BARRA SUPERIOR + CLASSIFICAÇÃO ---------------- */
 .topbar{
