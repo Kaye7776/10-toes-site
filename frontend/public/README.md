@@ -1,89 +1,79 @@
-# CASE TT-24-07-26 — Confidential Investigation Archive
+# PROCESSO TT-24-07-26 — Arquivo de Investigação (Polícia Judiciária)
 
-A cinematic, installable **Progressive Web App** built as the marketing campaign
-for the independent artist **KAYE** and the release of the song **TEN TOES**.
+Aplicação web progressiva (**PWA**) que reproduz, de forma autêntica, um **dossiê
+digital oficial da Polícia Judiciária** (República Portuguesa). Faz parte da campanha
+de lançamento do artista **KAYE** e da música **TEN TOES**.
 
-Visitors arrive by scanning a "Wanted" QR code and land inside what looks like a
-real confidential police / government investigation database. Only later — when
-the case status flips to `FOUND` — does it reveal itself as a music release.
+As pessoas chegam ao site ao ler um QR Code num cartaz de "Pessoa Desaparecida" e
+encontram o que parece ser um processo real de investigação. Só mais tarde — quando o
+estado do processo muda para `LOCALIZADO` — o site se revela como um lançamento musical.
 
-Built with **zero frameworks**: pure HTML, CSS and vanilla JavaScript.
-
----
-
-## Files
-
-| File | Purpose |
-|------|---------|
-| `index.html` | Semantic markup for the whole experience |
-| `style.css` | All styling, animations and responsive layout |
-| `script.js` | Boot sequence, state engine, motion, audio, PWA |
-| `manifest.json` | PWA metadata (installable app) |
-| `service-worker.js` | Offline-first caching |
-| `assets/photo.jpg` | Evidence photograph |
-| `assets/icon.png` | App / home-screen icon |
-
-> In this Emergent workspace the files live in `frontend/public/` so they are
-> served at the site root (`/`). To deploy elsewhere, copy the contents of
-> `frontend/public/` to any static host.
+Construído **sem frameworks**: apenas HTML, CSS e JavaScript puro.
+Estética sóbria e institucional (papel, azul-marinho + dourado da PJ), com movimento discreto.
 
 ---
 
-## The one thing you edit after release
+## Ficheiros
 
-Everything is driven by a single config object at the top of `script.js`:
+| Ficheiro | Função |
+|----------|--------|
+| `index.html` | Marcação semântica do dossiê |
+| `style.css` | Estilo institucional, layout responsivo, animações sóbrias |
+| `script.js` | Autenticação, motor de estado, relógio, reveal, PWA |
+| `manifest.json` | Metadados PWA (instalável) |
+| `service-worker.js` | Cache offline-first |
+| `assets/photo.jpg` | Fotografia de referência (prova) |
+| `assets/emblem.png` | Emblema institucional |
+| `assets/icon.png` | Ícone da aplicação |
+
+> Neste ambiente os ficheiros estão em `frontend/public/` e são servidos na raiz (`/`).
+> Para publicar noutro alojamento, copie o conteúdo de `frontend/public/`.
+
+---
+
+## Alterar após o lançamento (um único objeto)
+
+Tudo é controlado pelo objeto `CASE` no topo de `script.js`:
 
 ```js
 const CASE = {
-  status: "MISSING",        // change to "FOUND" after release
-  artist: "KAYE",
-  song: "TEN TOES",
-  city: "Rio Tinto, Porto",
-  date: "24 July 2026",
-  caseId: "TT-24-07-26",
-  whatsapp: "351900000000", // full international number, digits only
-  spotify: "",              // paste link after release
+  estado: "DESAPARECIDO",     // mudar para "LOCALIZADO" após o lançamento
+  artista: "KAYE",
+  musica: "TEN TOES",
+  cidade: "Rio Tinto, Porto",
+  data: "24 de julho de 2026",
+  processo: "TT-24-07-26",
+  whatsapp: "351900000000",   // nº internacional, só dígitos, sem "+"
+  spotify: "",                // colar link após o lançamento
   appleMusic: "",
   youtube: ""
 };
 ```
 
-### `status: "MISSING"` (before release)
-- Red **MISSING** stamp + status pill
-- `JOIN THE INVESTIGATION` button → opens WhatsApp with a pre-filled message
-- Subject reads as an open case
+### `estado: "DESAPARECIDO"` (antes do lançamento)
+- Carimbo vermelho **DESAPARECIDO** + etiqueta de situação
+- Botão **PARTICIPAR NA INVESTIGAÇÃO** → abre o WhatsApp com mensagem pré-preenchida
+- Apresenta-se como processo em investigação
 
-### `status: "FOUND"` (after release)
-- Green **FOUND** stamp, **CASE CLOSED**
-- Reveals the **TEN TOES** title + streaming buttons (Spotify / Apple Music / YouTube)
-- **The QR code never changes** — only this object does.
-
----
-
-## Experience
-
-1. **Boot screen** — black terminal, typed status lines, animated bar + percentage, blinking cursor.
-2. **Glitch transition** at 100% → **ACCESS GRANTED / CASE TT-24-07-26**.
-3. **Archive** — top bar (`CONFIDENTIAL` badge, clearance, live clock, audio toggle),
-   kinetic `CASE FILE` hero + rotating stamp, evidence frame with scan sweep,
-   subject dossier, scroll-animated timeline, CTA, real-time footer.
-4. **Ambient background** — moving gradients, breathing glow, particle field (canvas),
-   film grain, scanlines, vignette. **Mouse spotlight** on desktop.
+### `estado: "LOCALIZADO"` (após o lançamento)
+- Carimbo verde **LOCALIZADO**, **PROCESSO ENCERRADO**
+- Revela **TEN TOES** + botões de streaming (Spotify / Apple Music / YouTube)
+- **O QR Code nunca muda** — apenas este objeto.
 
 ---
 
-## Audio
-Subtle synthesized boot tone + terminal clicks via the Web Audio API.
-**Muted by default** — toggle from the top-right control (browser autoplay-safe).
+## Experiência
+1. **Autenticação** sóbria (emblema PJ, validação de credenciais, barra de progresso) → fade.
+2. **Dossiê** em folha de papel: cabeçalho oficial (República Portuguesa · Polícia Judiciária),
+   faixa **CONFIDENCIAL · USO OFICIAL · DIFUSÃO RESTRITA**, referência do processo, carimbo,
+   fotografia de referência, identificação do indivíduo, cronologia (animada ao scroll),
+   pedido de colaboração pública, rodapé com atualização em tempo real.
 
----
+## Atalhos de desenvolvimento
+- Tecla **`F`** — pré-visualizar o estado `LOCALIZADO` / lançamento.
+- `/?nointro=1` — abrir o dossiê sem o ecrã de autenticação.
+- Respeita `prefers-reduced-motion`.
 
-## Developer shortcuts
-- Press **`F`** to preview the `FOUND` / release state instantly (no config edit).
-- Respects `prefers-reduced-motion` (skips the long boot, disables heavy motion).
-
----
-
-## Install as an app
-Open the site on mobile → browser menu → **Add to Home Screen**.
-Launches standalone (no browser chrome) and works offline after first load.
+## Instalar como aplicação
+No telemóvel: menu do navegador → **Adicionar ao ecrã principal**.
+Abre em ecrã inteiro (standalone) e funciona offline após a primeira visita.

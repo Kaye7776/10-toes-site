@@ -1,0 +1,41 @@
+{
+  "summary": "Full end-to-end frontend test of the redesigned Portuguese Polícia Judiciária dossier (PWA). All 11 acceptance criteria in the review request PASSED with zero JS errors. Tested: sober PT auth screen (completes in ~5.14s with 0→100% progress and status cycling), top bar with live clock, classification band, letterhead (REPÚBLICA PORTUGUESA / POLÍCIA JUDICIÁRIA / Diretoria do Norte · Unidade de Pessoas Desaparecidas), PROCESSO TT-24-07-26, DESAPARECIDO(A) pill + red rotated carimbo, evidence photo (loads 805x1200), identification data (KAYE / Rio Tinto, Porto / 24 de julho de 2026), timeline with 3 dated items, PARTICIPAR NA INVESTIGAÇÃO WhatsApp href (wa.me/351900000000 + PT message containing 'investigação TT-24-07-26'), LOCALIZADO state (green pill+stamp, TEN TOES, 3 stream anchors with '· BREVE', PROCESSO ENCERRADO), ?nointro=1 skip, PWA manifest (name contains 'Processo TT-24-07-26', lang pt-PT), service-worker.js returns valid JS (cache v3), all /assets/* return 200, mobile 390x844 layout is clean with no horizontal overflow.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_2.json",
+    "/app/test_reports/desaparecido.png",
+    "/app/test_reports/localizado.png",
+    "/app/test_reports/mobile.png"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "script.js runAuth() blocks the initial view for ~5s with no way to skip except ?nointro=1 or prefers-reduced-motion. Acceptable per spec but consider a small 'Saltar' link for accessibility.",
+    "buildStreamLinks(): when URL is empty the anchor href defaults to '#'. Consider event.preventDefault() on click to avoid a jarring scroll to top when users tap a '· BREVE' link.",
+    "service-worker.js pre-caches '/' + '/index.html' as separate entries; ensure they map to identical bytes to avoid stale-HTML issues after future deploys (bump CACHE name when updating - currently v3 which is correct)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per request)", "frontend": "100%"},
+  "test_credentials": "None required — static PWA, no auth backend.",
+  "seed_data_creation": "None.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "The site is a pure static PWA served from CRA /public. Use REACT_APP_BACKEND_URL as base. Use /?nointro=1 to skip the 5s Portuguese auth screen; use /?nointro=1#estado=LOCALIZADO to inspect the FOUND state without needing to press 'f' (which reloads via location.reload). Do NOT navigate the WhatsApp href — just assert the href value. The service worker (v3) caches the shell — if you see stale English content, unregister SW and hard reload. All key elements expose data-testid: system-clock, classified-badge, case-id, status-pill, case-stamp, evidence-frame, datum-name, join-investigation-btn, release-song, stream-links, foot-case, stream-spotify/apple-music/youtube.",
+  "test_results_details": {
+    "auth_screen": {"completed_seconds": 5.14, "progress_at_1s": "50%", "status_at_1s": "A estabelecer canal seguro (TLS)…"},
+    "clock_updates_every_second": true,
+    "join_investigation_href": "https://wa.me/351900000000?text=Ol%C3%A1.%20Gostaria%20de%20participar%20na%20investiga%C3%A7%C3%A3o%20TT-24-07-26.",
+    "localizado_status_pill": "LOCALIZADO(A)",
+    "localizado_stamp": "LOCALIZADO",
+    "localizado_colors_green_rgb": "rgb(46, 125, 50)",
+    "stream_links": ["SPOTIFY · BREVE", "APPLE MUSIC · BREVE", "YOUTUBE · BREVE"],
+    "manifest": {"name": "CONFIDENCIAL — Processo TT-24-07-26", "lang": "pt-PT", "short_name": "PROCESSO TT-24"},
+    "assets_http_status": {"/manifest.json": 200, "/service-worker.js": 200, "/assets/icon.png": 200, "/assets/emblem.png": 200, "/assets/photo.jpg": 200},
+    "mobile_390x844": {"sheet_width": 362, "viewport_width": 390, "no_overflowing_elements": true},
+    "js_errors_during_full_flow": []
+  }
+}

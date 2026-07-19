@@ -1,14 +1,15 @@
 {
-  "name": "CLASSIFIED — Case TT-24-07-26",
-  "short_name": "CASE TT-24",
-  "description": "Confidential investigation archive. Authorized access only.",
+  "name": "CONFIDENCIAL — Processo TT-24-07-26",
+  "short_name": "PROCESSO TT-24",
+  "description": "Arquivo confidencial de investigação. Acesso restrito. Polícia Judiciária.",
+  "lang": "pt-PT",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#050608",
-  "theme_color": "#050608",
-  "categories": ["utilities", "government"],
+  "background_color": "#0d2340",
+  "theme_color": "#0d2340",
+  "categories": ["government", "utilities"],
   "icons": [
     {
       "src": "/assets/icon.png",
