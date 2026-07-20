@@ -153,15 +153,17 @@ Estou disponível para receber futuras atualizações sobre este processo.`;
 
     }, 1000);
 
-    setTimeout(() => {
+   setTimeout(() => {
 
-      window.open(url, "_blank");
+  window.location.href = url;
 
-      ov.classList.remove("is-active");
+  ov.classList.remove("is-active");
 
-      ov.setAttribute("aria-hidden", "true");
+  ov.setAttribute("aria-hidden", "true");
 
-    }, 2000);
+}, 2000);
+
+ 
 
   });
 
