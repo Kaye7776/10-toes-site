@@ -242,8 +242,15 @@ setSyncAgo();
 setInterval(() => { setLastUpdate(); setSyncAgo(); }, 30000);
 const skipIntro = prefersReduced || location.search.includes("nointro");
 if (skipIntro) {
+  $("#warn").style.display = "none";
   $("#auth").style.display = "none";
   openArchive();
 } else {
-  runAuth();
+  // Ordem: 1) aviso de acesso → 2) ligação/carregamento → 3) arquivo
+  const warn = $("#warn");
+  $("#warnBtn").addEventListener("click", () => {
+    warn.classList.add("is-hidden");
+    setTimeout(() => { warn.style.display = "none"; }, 400);
+    runAuth();
+  });
 }
