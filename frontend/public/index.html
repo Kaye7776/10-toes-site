@@ -223,13 +223,15 @@ Se possuir informações relevantes sobre o paradeiro deste indivíduo,
 preencha o relatório abaixo.
 </p>
 
-<form id="tipForm" method="POST">
-
+<form action="https://api.web3forms.com/submit" method="POST">
 <input
 type="hidden"
 name="access_key"
 value="0a3b8166-6784-4e54-a651-d5e2a295194f">
-
+<input
+type="hidden"
+name="redirect"
+value="https://10-toes-site.vercel.app/obrigado.html">
 <label>Nome</label>
 <input
 type="text"
@@ -258,21 +260,7 @@ ENVIAR RELATÓRIO
 
 </form>
 
-<div id="tipSuccess" style="display:none">
 
-<h3>✔ RELATÓRIO RECEBIDO</h3>
-
-<p>A informação foi registada com sucesso.</p>
-
-<p>ID DO RELATÓRIO:
-<strong id="reportId"></strong>
-</p>
-
-<p>
-A Unidade de Processos Especiais irá analisar a informação recebida.
-</p>
-
-</div>
 
 </section>
       <!-- Rodapé do documento -->
@@ -304,30 +292,6 @@ A Unidade de Processos Especiais irá analisar a informação recebida.
     <div class="secure__lock" aria-hidden="true"></div>
   </div>
 
-  </button>
-
-</form>
-
-  <div id="tipSuccess" style="display:none;">
-
-      <h3>✔ RELATÓRIO RECEBIDO</h3>
-
-      <p>
-        A informação foi registada com sucesso.
-      </p>
-
-      <p>
-        ID DO RELATÓRIO:
-        <strong id="reportId"></strong>
-      </p>
-
-      <p>
-        A Unidade de Processos Especiais irá analisar a informação recebida.
-      </p>
-
-  </div>
-
-</section>
   <script src="/script.js"></script>
 </body>
 </html>
