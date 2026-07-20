@@ -125,7 +125,7 @@ function wireCTA() {
       window.open(url, "_blank", "noopener");
       ov.classList.remove("is-active");
       ov.setAttribute("aria-hidden", "true");
-    }, 1100);
+    }, 1300);
   });
 }
 
