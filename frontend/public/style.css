@@ -335,7 +335,6 @@ img{display:block;max-width:100%}
 
 .tip-section{
     margin-top:40px;
-    background:red !important;
     padding-top:30px;
     border-top:2px solid var(--line);
 }
