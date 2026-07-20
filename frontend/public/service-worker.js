@@ -2,7 +2,7 @@
    CASE TT-24-07-26 — SERVICE WORKER
    Offline-first caching for the confidential archive PWA.
    ============================================================ */
-const CACHE = "processo-tt-24-07-26-v5";
+const CACHE = "processo-tt-24-07-26-v6";
 const ASSETS = [
   "/",
   "/index.html",
