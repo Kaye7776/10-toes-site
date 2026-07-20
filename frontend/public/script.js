@@ -24,7 +24,7 @@ const CASE = {
   cidade: "Rio Tinto, Porto",
   data: "24 de julho de 2026",
   processo: "TT-24-07-26",
-  whatsapp: "351900000000",        // ← EDITAR: nº internacional, só dígitos, sem "+"
+  whatsapp: "351912944409",        // ← EDITAR: nº internacional, só dígitos, sem "+"
   spotify: "",                     // ← EDITAR após lançamento
   appleMusic: "",                  // ← EDITAR após lançamento
   youtube: ""                      // ← EDITAR após lançamento
@@ -112,21 +112,59 @@ if ($("#timelineList")) tlIo.observe($("#timelineList"));
 /* -------------------- 5. BOTÃO DE PARTICIPAÇÃO (WHATSAPP) -------------------- */
 function wireCTA() {
   const btn = $("#joinBtn");
-  const msg = `Olá. Gostaria de participar na investigação ${CASE.processo}.`;
-  const url = `https://wa.me/${CASE.whatsapp}?text=${encodeURIComponent(msg)}`;
-  btn.href = url;
-  // Transição de "canal seguro" (~1s) antes de abrir o WhatsApp
+
   btn.addEventListener("click", (e) => {
     e.preventDefault();
+
+    const mensagem = `🚨 RELATÓRIO ${CASE.processo}
+
+Pretendo comunicar uma pista relativa ao processo.
+
+Nome (opcional):
+
+Local do avistamento:
+
+Informação:
+
+Estou disponível para receber futuras atualizações sobre este processo.`;
+
+    const url =
+      `https://wa.me/${CASE.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+
     const ov = $("#secure");
+
+    ov.querySelector(".secure__t1").textContent =
+      "ESTABELECENDO CANAL ENCRIPTADO";
+
+    ov.querySelector(".secure__t2").textContent =
+      "VALIDANDO IDENTIDADE...";
+
     ov.classList.add("is-active");
+
     ov.setAttribute("aria-hidden", "false");
+
     setTimeout(() => {
-      window.open(url, "_blank", "noopener");
+
+      ov.querySelector(".secure__t1").textContent =
+        "CANAL SEGURO ESTABELECIDO";
+
+      ov.querySelector(".secure__t2").textContent =
+        "A encaminhar para o terminal de comunicações...";
+
+    }, 1000);
+
+    setTimeout(() => {
+
+      window.open(url, "_blank");
+
       ov.classList.remove("is-active");
+
       ov.setAttribute("aria-hidden", "true");
-    }, 1300);
+
+    }, 2000);
+
   });
+
 }
 
 /* Estado de consulta subtil: "Hoje às HH:MM" */
