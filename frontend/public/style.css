@@ -334,63 +334,87 @@ img{display:block;max-width:100%}
 =========================== */
 
 .tip-section{
-    width:min(900px,92%);
-    margin:80px auto;
-    padding:40px;
-    border:1px solid rgba(0,0,0,.12);
-    background:#f7f3ea;
+    margin-top:40px;
+    padding-top:30px;
+    border-top:2px solid var(--line);
 }
 
 .tip-section h2{
-    margin-bottom:20px;
-    font-size:32px;
-    letter-spacing:2px;
+    font-family:var(--font-head);
+    font-size:18px;
+    letter-spacing:.15em;
+    color:var(--navy);
+    text-transform:uppercase;
+    margin-bottom:15px;
 }
 
 .tip-text{
-    margin-bottom:30px;
-    color:#555;
+    color:var(--ink-2);
+    margin-bottom:25px;
+    font-size:15px;
 }
 
 .tip-section label{
     display:block;
-    margin:20px 0 8px;
-    font-weight:bold;
+    margin:18px 0 8px;
+    font-family:var(--font-head);
+    font-size:11px;
+    letter-spacing:.12em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
 }
 
 .tip-section input,
 .tip-section textarea{
     width:100%;
     padding:14px;
-    font-size:16px;
-    border:1px solid #b7b7b7;
-    background:white;
-    box-sizing:border-box;
+    border:1px solid var(--line);
+    background:#fff;
+    font-family:var(--font-body);
+    font-size:15px;
+    color:var(--ink);
 }
 
 .tip-section textarea{
+    min-height:170px;
     resize:vertical;
 }
 
+.tip-section input:focus,
+.tip-section textarea:focus{
+    outline:none;
+    border-color:var(--navy);
+    box-shadow:0 0 0 3px rgba(13,35,64,.08);
+}
+
 .tip-section button{
+    width:100%;
     margin-top:25px;
-    padding:14px 26px;
-    border:none;
+    padding:16px;
+    background:var(--navy);
+    color:#fff;
+    border:0;
+    border-bottom:3px solid var(--gold);
     cursor:pointer;
-    background:#8b1e1e;
-    color:white;
-    font-weight:bold;
-    letter-spacing:1px;
+    font-family:var(--font-head);
+    font-size:14px;
+    letter-spacing:.12em;
     transition:.25s;
 }
 
 .tip-section button:hover{
-    background:#6d1111;
+    background:var(--navy-2);
 }
 
 #tipSuccess{
     margin-top:30px;
-    padding:25px;
-    border:2px solid #2f7d32;
-    background:#eef8ef;
+    padding:20px;
+    border:2px solid #2e7d32;
+    background:#edf8ef;
+    text-align:center;
+}
+
+#tipSuccess h3{
+    color:#2e7d32;
+    margin-bottom:10px;
 }
