@@ -233,7 +233,29 @@ addEventListener("hashchange", () => {
   CASE.estado = location.hash.includes("estado=LOCALIZADO") ? "LOCALIZADO" : "DESAPARECIDO";
   location.reload();
 });
+const form = document.getElementById("tipForm");
 
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      form.style.display = "none";
+      document.getElementById("tipSuccess").style.display = "block";
+    } else {
+      alert("Erro ao enviar. Tente novamente.");
+    }
+  });
+}
 /* -------------------- ARRANQUE -------------------- */
 renderState();
 wireCTA();

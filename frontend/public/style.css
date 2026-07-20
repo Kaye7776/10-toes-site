@@ -329,3 +329,68 @@ img{display:block;max-width:100%}
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
   .reveal,.tl__item{opacity:1;transform:none}
 }
+/* ===========================
+   COMUNICAR INFORMAÇÃO
+=========================== */
+
+.tip-section{
+    width:min(900px,92%);
+    margin:80px auto;
+    padding:40px;
+    border:1px solid rgba(0,0,0,.12);
+    background:#f7f3ea;
+}
+
+.tip-section h2{
+    margin-bottom:20px;
+    font-size:32px;
+    letter-spacing:2px;
+}
+
+.tip-text{
+    margin-bottom:30px;
+    color:#555;
+}
+
+.tip-section label{
+    display:block;
+    margin:20px 0 8px;
+    font-weight:bold;
+}
+
+.tip-section input,
+.tip-section textarea{
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    border:1px solid #b7b7b7;
+    background:white;
+    box-sizing:border-box;
+}
+
+.tip-section textarea{
+    resize:vertical;
+}
+
+.tip-section button{
+    margin-top:25px;
+    padding:14px 26px;
+    border:none;
+    cursor:pointer;
+    background:#8b1e1e;
+    color:white;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition:.25s;
+}
+
+.tip-section button:hover{
+    background:#6d1111;
+}
+
+#tipSuccess{
+    margin-top:30px;
+    padding:25px;
+    border:2px solid #2f7d32;
+    background:#eef8ef;
+}

@@ -243,7 +243,71 @@
     <div class="secure__t2">A encaminhar para o terminal de comunicações...</div>
     <div class="secure__lock" aria-hidden="true"></div>
   </div>
+<section id="tip-section" class="tip-section">
 
+  <h2>COMUNICAR INFORMAÇÃO</h2>
+
+  <p class="tip-text">
+    Se possuir informações relevantes sobre o paradeiro deste indivíduo,
+    preencha o relatório abaixo.
+  </p>
+
+ <form id="tipForm" method="POST">
+
+  <input
+    type="hidden"
+    name="access_key"
+    value="0a3b8166-6784-4e54-a651-d5e2a295194f">
+
+  <label>Nome</label>
+  <input
+      type="text"
+      id="tipName"
+      name="name"
+      placeholder="Introduza o seu nome"
+      required>
+<label>Email</label>
+
+<input
+    type="email"
+    id="tipEmail"
+    name="email"
+    placeholder="O seu email"
+    required>
+  <label>Onde viu o indivíduo?</label>
+  <textarea
+      id="tipMessage"
+      name="message"
+      rows="5"
+      placeholder="Descreva todas as informações relevantes..."
+      required></textarea>
+
+  <button type="submit">
+      ENVIAR RELATÓRIO
+  </button>
+
+</form>
+
+  <div id="tipSuccess" style="display:none;">
+
+      <h3>✔ RELATÓRIO RECEBIDO</h3>
+
+      <p>
+        A informação foi registada com sucesso.
+      </p>
+
+      <p>
+        ID DO RELATÓRIO:
+        <strong id="reportId"></strong>
+      </p>
+
+      <p>
+        A Unidade de Processos Especiais irá analisar a informação recebida.
+      </p>
+
+  </div>
+
+</section>
   <script src="/script.js"></script>
 </body>
 </html>
